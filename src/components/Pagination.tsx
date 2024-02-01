@@ -2,7 +2,8 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
-import data, { offset } from "../db/data";
+import { offset } from "../db/data";
+import usePosts from "../hooks/usePosts";
 
 interface PaginationProps {
   hasPrevPage: boolean;
@@ -15,9 +16,10 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   const navigate = useNavigate();
   const { search } = useLocation();
+  const posts = usePosts();
 
   const page = new URLSearchParams(search).get("page") ?? "1";
-  const totalPage = Math.ceil(data.length / offset);
+  const totalPage = Math.ceil(posts.data.length / offset);
 
   return (
     <div className="flex justify-end items-center gap-5">
