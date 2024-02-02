@@ -1,9 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Container from "../components/Container";
 import Button from "../components/Button";
-import AutoLinkContent from "../components/AutoLinkContent";
 import useUpdateModal from "../hooks/useUpdateModal";
 import usePosts from "../hooks/usePosts";
 import { autoLink } from "../helpers/autoLink";
@@ -14,6 +13,17 @@ const Post = () => {
   const posts = usePosts();
 
   const post = posts.data.find((post) => post.id === postId);
+
+  if (!post) {
+    return (
+      <div className="fixed inset-0 flex flex-col justify-center items-center gap-3">
+        <h1 className="text-3xl font-bold">존재하지 않는 포스트입니다.</h1>
+        <Link to="/" className="text-sky-500 hover:opacity-80">
+          돌아가기
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <Container>

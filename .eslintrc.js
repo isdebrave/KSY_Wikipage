@@ -21,7 +21,7 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
   ],
-  ignorePatterns: ["webpack/*"],
+  ignorePatterns: ["webpack.config.js"],
   rules: {
     "import/no-unresolved": "off",
     "import/named": "off",

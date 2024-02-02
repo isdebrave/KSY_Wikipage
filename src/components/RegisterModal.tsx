@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { faker } from "@faker-js/faker";
 
 import useRegisterModal from "../hooks/useRegisterModal";
 import usePosts from "../hooks/usePosts";
@@ -21,7 +20,7 @@ const RegisterModal = () => {
     }
 
     posts.addData({
-      id: faker.string.nanoid(),
+      id: Date.now() + "",
       title,
       content,
     });

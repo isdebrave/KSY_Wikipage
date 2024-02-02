@@ -4,17 +4,11 @@ import { Link } from "react-router-dom";
 import { dataType } from "../db/data";
 
 export const autoLink = (posts: dataType[], content: string) => {
-  let str = "(";
-  for (let i = 0; i < posts.length; i++) {
-    if (i === posts.length - 1) {
-      str += posts[i].title;
-    } else {
-      str += posts[i].title + "|";
-    }
-  }
-  str += ")";
+  const titleArray = posts.map((post) => post.title);
+  const titleRegex =
+    "(" + titleArray.sort((a, b) => b.length - a.length).join("|") + ")";
 
-  const regex = new RegExp(str, "g");
+  const regex = new RegExp(titleRegex, "g");
 
   const replacedContent = content.split(regex).map((string, idx) => {
     if (idx % 2 === 0) {
